@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name        = "motion-swipe"
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.summary     = "Rubymotion gem to use TinderSimpleSwipeCards"
   # s.description = ""
   s.authors     = ["Damien Sutevski"]
