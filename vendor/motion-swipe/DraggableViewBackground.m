@@ -11,7 +11,7 @@
 @implementation DraggableViewBackground{
     NSInteger cardsLoadedIndex; //%%% the index of the card you have loaded into the loadedCards array last
     NSMutableArray *loadedCards; //%%% the array of card loaded (change max_buffer_size to increase or decrease the number of cards this holds)
-    
+
     UIButton* menuButton;
     UIButton* messageButton;
     UIButton* checkButton;
@@ -80,18 +80,18 @@ static const float CARD_WIDTH = 290; //%%% width of the draggable card
     if([exampleCardLabels count] > 0) {
         NSInteger numLoadedCardsCap =(([exampleCardLabels count] > MAX_BUFFER_SIZE)?MAX_BUFFER_SIZE:[exampleCardLabels count]);
         //%%% if the buffer size is greater than the data size, there will be an array error, so this makes sure that doesn't happen
-        
+
         //%%% loops through the exampleCardsLabels array to create a card for each label.  This should be customized by removing "exampleCardLabels" with your own array of data
         for (int i = 0; i<[exampleCardLabels count]; i++) {
             DraggableView* newCard = [self createDraggableViewWithDataAtIndex:i];
             [allCards addObject:newCard];
-            
+
             if (i<numLoadedCardsCap) {
                 //%%% adds a small number of cards to be loaded
                 [loadedCards addObject:newCard];
             }
         }
-        
+
         //%%% displays the small number of loaded cards dictated by MAX_BUFFER_SIZE so that not all the cards
         // are showing at once and clogging a ton of data
         for (int i = 0; i<[loadedCards count]; i++) {
@@ -112,9 +112,9 @@ static const float CARD_WIDTH = 290; //%%% width of the draggable card
 {
     //do whatever you want with the card that was swiped
     //    DraggableView *c = (DraggableView *)card;
-    
+
     [loadedCards removeObjectAtIndex:0]; //%%% card was swiped, so it's no longer a "loaded card"
-    
+
     if (cardsLoadedIndex < [allCards count]) { //%%% if we haven't reached the end of all cards, put another into the loaded cards
         [loadedCards addObject:[allCards objectAtIndex:cardsLoadedIndex]];
         cardsLoadedIndex++;//%%% loaded a card, so have to increment count
@@ -129,9 +129,9 @@ static const float CARD_WIDTH = 290; //%%% width of the draggable card
 {
     //do whatever you want with the card that was swiped
     //    DraggableView *c = (DraggableView *)card;
-    
+
     [loadedCards removeObjectAtIndex:0]; //%%% card was swiped, so it's no longer a "loaded card"
-    
+
     if (cardsLoadedIndex < [allCards count]) { //%%% if we haven't reached the end of all cards, put another into the loaded cards
         [loadedCards addObject:[allCards objectAtIndex:cardsLoadedIndex]];
         cardsLoadedIndex++;//%%% loaded a card, so have to increment count
