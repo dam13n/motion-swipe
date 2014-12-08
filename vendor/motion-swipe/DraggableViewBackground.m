@@ -20,8 +20,8 @@
 //this makes it so only two cards are loaded at a time to
 //avoid performance and memory costs
 static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any given time, must be greater than 1
-static const float CARD_HEIGHT = 386; //%%% height of the draggable card
-static const float CARD_WIDTH = 290; //%%% width of the draggable card
+static const float CARD_HEIGHT = 300; //%%% height of the draggable card
+static const float CARD_WIDTH = 320; //%%% width of the draggable card
 
 @synthesize exampleCardLabels; //%%% all the labels I'm using as example data at the moment
 @synthesize allCards;//%%% all the cards
@@ -32,63 +32,98 @@ static const float CARD_WIDTH = 290; //%%% width of the draggable card
     if (self) {
         [super layoutSubviews];
         [self setupView];
-        exampleCardLabels = [[NSArray alloc]initWithObjects:@"first",@"second",@"third",@"fourth",@"last", nil]; //%%% placeholder for card-specific information
+        exampleCardLabels = [[NSMutableArray alloc] init]; //%%% placeholder for card-specific information
         loadedCards = [[NSMutableArray alloc] init];
         allCards = [[NSMutableArray alloc] init];
         cardsLoadedIndex = 0;
-        [self loadCards];
+        // [self loadCards];
     }
     return self;
+}
+
+-(int)loadedCardsCount
+{
+    return [loadedCards count];
+}
+
+-(void)removeCards
+{
+    loadedCards =[[NSMutableArray alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
+
 }
 
 //%%% sets up the extra buttons on the screen
 -(void)setupView
 {
-#warning customize all of this.  These are just place holders to make it look pretty
-    self.backgroundColor = [UIColor colorWithRed:.92 green:.93 blue:.95 alpha:1]; //the gray background colors
-    menuButton = [[UIButton alloc]initWithFrame:CGRectMake(17, 34, 22, 15)];
-    [menuButton setImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
-    messageButton = [[UIButton alloc]initWithFrame:CGRectMake(284, 34, 18, 18)];
-    [messageButton setImage:[UIImage imageNamed:@"messageButton"] forState:UIControlStateNormal];
-    xButton = [[UIButton alloc]initWithFrame:CGRectMake(60, 485, 59, 59)];
-    [xButton setImage:[UIImage imageNamed:@"xButton"] forState:UIControlStateNormal];
-    [xButton addTarget:self action:@selector(swipeLeft) forControlEvents:UIControlEventTouchUpInside];
-    checkButton = [[UIButton alloc]initWithFrame:CGRectMake(200, 485, 59, 59)];
-    [checkButton setImage:[UIImage imageNamed:@"checkButton"] forState:UIControlStateNormal];
-    [checkButton addTarget:self action:@selector(swipeRight) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:menuButton];
-    [self addSubview:messageButton];
-    [self addSubview:xButton];
-    [self addSubview:checkButton];
+// #warning customize all of this.  These are just place holders to make it look pretty
+    self.backgroundColor = [UIColor colorWithRed:.92 green:.93 blue:.95 alpha:0.0]; //the gray background colors
+    // self.backgroundColor = [UIColor colorWithWhite:myWhiteFloat alpha:myAlphaFloat];
+
+    // menuButton = [[UIButton alloc]initWithFrame:CGRectMake(17, 34, 22, 15)];
+    // [menuButton setImage:[UIImage imageNamed:@"menuButton"] forState:UIControlStateNormal];
+    // messageButton = [[UIButton alloc]initWithFrame:CGRectMake(284, 34, 18, 18)];
+    // [messageButton setImage:[UIImage imageNamed:@"messageButton"] forState:UIControlStateNormal];
+    // xButton = [[UIButton alloc]initWithFrame:CGRectMake(60, 485, 59, 59)];
+    // [xButton setImage:[UIImage imageNamed:@"xButton"] forState:UIControlStateNormal];
+    // [xButton addTarget:self action:@selector(swipeLeft) forControlEvents:UIControlEventTouchUpInside];
+    // checkButton = [[UIButton alloc]initWithFrame:CGRectMake(200, 485, 59, 59)];
+    // [checkButton setImage:[UIImage imageNamed:@"checkButton"] forState:UIControlStateNormal];
+    // [checkButton addTarget:self action:@selector(swipeRight) forControlEvents:UIControlEventTouchUpInside];
+    // // [self addSubview:menuButton];
+    // // [self addSubview:messageButton];
+    // // [self addSubview:xButton];
+    // // [self addSubview:checkButton];
 }
 
-#warning include own card customization here!
+// #warning include own card customization here!
 //%%% creates a card and returns it.  This should be customized to fit your needs.
 // use "index" to indicate where the information should be pulled.  If this doesn't apply to you, feel free
 // to get rid of it (eg: if you are building cards from data from the internet)
 -(DraggableView *)createDraggableViewWithDataAtIndex:(NSInteger)index
 {
     DraggableView *draggableView = [[DraggableView alloc]initWithFrame:CGRectMake((self.frame.size.width - CARD_WIDTH)/2, (self.frame.size.height - CARD_HEIGHT)/2, CARD_WIDTH, CARD_HEIGHT)];
-    draggableView.information.text = [exampleCardLabels objectAtIndex:index]; //%%% placeholder for card-specific information
+    draggableView.transName.text = [allCards objectAtIndex:index]; //%%% placeholder for card-specific information
     draggableView.delegate = self;
     return draggableView;
 }
 
-//%%% loads all the cards and puts the first x in the "loaded cards" array
--(void)loadCards
+-(DraggableView *)createDraggableViewWithDataName:(NSString *)transName withAmount:(NSString *)amount withDate:(NSString *)date withCategory:(NSString *)category //withTransaction:(NSString *)transactionId
 {
-    if([exampleCardLabels count] > 0) {
-        NSInteger numLoadedCardsCap =(([exampleCardLabels count] > MAX_BUFFER_SIZE)?MAX_BUFFER_SIZE:[exampleCardLabels count]);
+    DraggableView *draggableView = [[DraggableView alloc]initWithFrame:CGRectMake((self.frame.size.width - CARD_WIDTH)/2, (self.frame.size.height - CARD_HEIGHT)/3, CARD_WIDTH, CARD_HEIGHT)];
+    draggableView.transName.text = transName; //%%% placeholder for card-specific information
+    draggableView.amount.text = [NSString stringWithFormat:@"$%@", amount];
+    // NSLog([NSString stringWithFormat:@"left........ %1.6f", xFromCenter]);
+    draggableView.date.text = date;
+    draggableView.category.text = category;
+    // draggableView.transactionId = transactionId;
+    draggableView.delegate = self;
+    return draggableView;
+}
+
+-(void)addCard:(DraggableView *)newCard
+{
+    [allCards addObject:newCard];
+
+}
+
+
+//%%% loads all the cards and puts the first x in the "loaded cards" array
+-(int)loadCards
+{
+    if([allCards count] > 0) {
+        NSInteger numLoadedCardsCap =((([allCards count] > MAX_BUFFER_SIZE) || ([allCards count] == 0))?MAX_BUFFER_SIZE:[allCards count]);
         //%%% if the buffer size is greater than the data size, there will be an array error, so this makes sure that doesn't happen
 
-        //%%% loops through the exampleCardsLabels array to create a card for each label.  This should be customized by removing "exampleCardLabels" with your own array of data
-        for (int i = 0; i<[exampleCardLabels count]; i++) {
-            DraggableView* newCard = [self createDraggableViewWithDataAtIndex:i];
-            [allCards addObject:newCard];
+        //%%% loops through the exampleCardsLabels array to create a card for each label.  This should be customized by removing "allCards" with your own array of data
+        for (int i = 0; i<[allCards count]; i++) {
+            // DraggableView* newCard = [self createDraggableViewWithDataAtIndex:i];
+            // [allCards addObject:newCard];
 
             if (i<numLoadedCardsCap) {
                 //%%% adds a small number of cards to be loaded
-                [loadedCards addObject:newCard];
+                [loadedCards addObject:[allCards objectAtIndex:i]];
             }
         }
 
@@ -100,35 +135,49 @@ static const float CARD_WIDTH = 290; //%%% width of the draggable card
             } else {
                 [self addSubview:[loadedCards objectAtIndex:i]];
             }
+
             cardsLoadedIndex++; //%%% we loaded a card into loaded cards, so we have to increment
         }
+        DraggableView *c = (DraggableView *) loadedCards[0];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject: c.transactionId forKey:@"currentCard"];
     }
+    return [loadedCards count];
 }
 
-#warning include own action here!
+// #warning include own action here!
 //%%% action called when the card goes to the left.
 // This should be customized with your own action
 -(void)cardSwipedLeft:(UIView *)card;
 {
     //do whatever you want with the card that was swiped
-    //    DraggableView *c = (DraggableView *)card;
+    DraggableView *c = (DraggableView *)card;
 
     [loadedCards removeObjectAtIndex:0]; //%%% card was swiped, so it's no longer a "loaded card"
+    // [loadedCards removeObjectAtIndex:0]
 
     if (cardsLoadedIndex < [allCards count]) { //%%% if we haven't reached the end of all cards, put another into the loaded cards
         [loadedCards addObject:[allCards objectAtIndex:cardsLoadedIndex]];
         cardsLoadedIndex++;//%%% loaded a card, so have to increment count
         [self insertSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] belowSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-2)]];
+
     }
+    DraggableView *cNew = (DraggableView *) loadedCards[MAX_BUFFER_SIZE-2];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject: cNew.transactionId forKey:@"currentCard"];
+
+    [defaults setObject: c.transactionId forKey:@"cardSwiped"];
+    [defaults setObject:@"personal" forKey:@"cardExpenseType"];
+    [defaults synchronize];
 }
 
-#warning include own action here!
+// #warning include own action here!
 //%%% action called when the card goes to the right.
 // This should be customized with your own action
 -(void)cardSwipedRight:(UIView *)card
 {
     //do whatever you want with the card that was swiped
-    //    DraggableView *c = (DraggableView *)card;
+    DraggableView *c = (DraggableView *)card;
 
     [loadedCards removeObjectAtIndex:0]; //%%% card was swiped, so it's no longer a "loaded card"
 
@@ -137,6 +186,13 @@ static const float CARD_WIDTH = 290; //%%% width of the draggable card
         cardsLoadedIndex++;//%%% loaded a card, so have to increment count
         [self insertSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] belowSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-2)]];
     }
+    DraggableView *cNew = (DraggableView *) loadedCards[MAX_BUFFER_SIZE-2];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject: cNew.transactionId forKey:@"currentCard"];
+
+    [defaults setObject:c.transactionId forKey:@"cardSwiped"];
+    [defaults setObject:@"business" forKey:@"cardExpenseType"];
+    [defaults synchronize];
 
 }
 

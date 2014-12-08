@@ -28,9 +28,9 @@
     if (_mode == mode) {
         return;
     }
-    
+
     _mode = mode;
-    
+
     if(mode == GGOverlayViewModeLeft) {
         imageView.image = [UIImage imageNamed:@"noButton"];
     } else {
@@ -41,7 +41,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    imageView.frame = CGRectMake(50, 50, 100, 100);
+    imageView.frame = CGRectMake(0, 0, 100, 100);
 }
 
 /*

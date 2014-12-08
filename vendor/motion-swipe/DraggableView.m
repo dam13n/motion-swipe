@@ -26,8 +26,16 @@
 @synthesize delegate;
 
 @synthesize panGestureRecognizer;
-@synthesize information;
+@synthesize transName;
+@synthesize amount;
+@synthesize date;
+@synthesize category;
 @synthesize overlayView;
+@synthesize swiped;
+@synthesize business;
+@synthesize transactionId;
+
+@synthesize swipeType;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,21 +43,47 @@
     if (self) {
         [self setupView];
 
-#warning placeholder stuff, replace with card-specific information {
-        information = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, self.frame.size.width, 100)];
-        information.text = @"no info given";
-        [information setTextAlignment:NSTextAlignmentCenter];
-        information.textColor = [UIColor blackColor];
+        swipeType = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 100)];
+        swipeType.text = @"";
+        [swipeType setTextAlignment:NSTextAlignmentCenter];
+        swipeType.textColor = [UIColor blackColor];
+
+        transName = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, self.frame.size.width, 100)];
+        transName.text = @"no info given";
+        [transName setTextAlignment:NSTextAlignmentCenter];
+        transName.textColor = [UIColor blackColor];
+
+        amount = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, self.frame.size.width, 100)];
+        amount.text = @"no info given";
+        [amount setTextAlignment:NSTextAlignmentCenter];
+        amount.textColor = [UIColor blackColor];
+
+        date = [[UILabel alloc]initWithFrame:CGRectMake(0, 120, self.frame.size.width, 100)];
+        date.text = @"no info given";
+        [date setTextAlignment:NSTextAlignmentCenter];
+        date.textColor = [UIColor blackColor];
+
+        category = [[UILabel alloc]initWithFrame:CGRectMake(0, 160, self.frame.size.width, 100)];
+        category.text = @"no info given";
+        [category setTextAlignment:NSTextAlignmentCenter];
+        category.textColor = [UIColor blackColor];
+
+        // transactionId = [[UILabel alloc]initWithFrame:CGRectMake(0, 170, self.frame.size.width, 100)];
+        // transactionId.text = @"no info given";
 
         self.backgroundColor = [UIColor whiteColor];
-#warning placeholder stuff, replace with card-specific information }
+
 
 
 
         panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(beingDragged:)];
 
         [self addGestureRecognizer:panGestureRecognizer];
-        [self addSubview:information];
+        [self addSubview:swipeType];
+        [self addSubview:transName];
+        [self addSubview:amount];
+        [self addSubview:date];
+        [self addSubview:category];
 
         overlayView = [[OverlayView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-100, 0, 100, 100)];
         overlayView.alpha = 0;
@@ -104,6 +138,16 @@
             //%%% move the object's center by center + gesture coordinate
             self.center = CGPointMake(self.originalPoint.x + xFromCenter, self.originalPoint.y + yFromCenter);
 
+            // [NSString stringWithFormat: @"X position is: %", xFromCenter];
+
+            if (xFromCenter > 30) {
+                swipeType.text = @"BUSINESS";
+            } else if (xFromCenter < -30) {
+                swipeType.text = @"PERSONAL";
+            } else {
+                swipeType.text = @"";
+            }
+
             //%%% rotate by certain amount
             CGAffineTransform transform = CGAffineTransformMakeRotation(rotationAngel);
 
@@ -118,12 +162,24 @@
         };
             //%%% let go of the card
         case UIGestureRecognizerStateEnded: {
+
+            swipeType.text = @"";
+
             [self afterSwipeAction];
             break;
         };
-        case UIGestureRecognizerStatePossible:break;
-        case UIGestureRecognizerStateCancelled:break;
-        case UIGestureRecognizerStateFailed:break;
+        case UIGestureRecognizerStatePossible: {
+            NSLog(@"possible");
+            break;
+        }
+        case UIGestureRecognizerStateCancelled: {
+            NSLog(@"cancelle");
+            break;
+        }
+        case UIGestureRecognizerStateFailed: {
+            NSLog(@"failed");
+            break;
+        }
     }
 }
 
@@ -154,6 +210,7 @@
                              overlayView.alpha = 0;
                          }];
     }
+
 }
 
 //%%% called when a swipe exceeds the ACTION_MARGIN to the right
@@ -168,6 +225,9 @@
                      }];
 
     [delegate cardSwipedRight:self];
+
+    self.swiped = YES;
+    self.business = YES;
 
     NSLog(@"YES");
 }
@@ -185,6 +245,8 @@
 
     [delegate cardSwipedLeft:self];
 
+    self.swiped = YES;
+    self.business = NO;
     NSLog(@"NO");
 }
 
