@@ -41,6 +41,12 @@
 
 @property (retain,nonatomic)NSArray* exampleCardLabels; //%%% the labels the cards
 @property (retain,nonatomic)NSMutableArray* allCards; //%%% the labels the cards
+@property (retain,nonatomic)NSMutableArray* loadedCards;
+@property (nonatomic, assign) int cardsLoadedIndex;
+
+@property (nonatomic, assign) int cardHeight;
+@property (nonatomic, assign) int cardWidth;
+@property (nonatomic, assign) int verticalOffset;
 
 
 @end

@@ -105,6 +105,9 @@
 <method selector='allCards'>
 <retval declared_type='NSMutableArray*' type='@'/>
 </method>
+<method selector='cardHeight'>
+<retval declared_type='int' type='i'/>
+</method>
 <method selector='cardSwipedLeft:'>
 <arg declared_type='UIView*' index='0' name='card' type='@'/>
 <retval declared_type='void' type='v'/>
@@ -113,16 +116,48 @@
 <arg declared_type='UIView*' index='0' name='card' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
+<method selector='cardWidth'>
+<retval declared_type='int' type='i'/>
+</method>
+<method selector='cardsLoadedIndex'>
+<retval declared_type='int' type='i'/>
+</method>
 <method selector='exampleCardLabels'>
 <retval declared_type='NSArray*' type='@'/>
+</method>
+<method selector='loadedCards'>
+<retval declared_type='NSMutableArray*' type='@'/>
 </method>
 <method selector='setAllCards:'>
 <arg declared_type='NSMutableArray*' index='0' name='allCards' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
+<method selector='setCardHeight:'>
+<arg declared_type='int' index='0' name='cardHeight' type='i'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setCardWidth:'>
+<arg declared_type='int' index='0' name='cardWidth' type='i'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setCardsLoadedIndex:'>
+<arg declared_type='int' index='0' name='cardsLoadedIndex' type='i'/>
+<retval declared_type='void' type='v'/>
+</method>
 <method selector='setExampleCardLabels:'>
 <arg declared_type='NSArray*' index='0' name='exampleCardLabels' type='@'/>
 <retval declared_type='void' type='v'/>
+</method>
+<method selector='setLoadedCards:'>
+<arg declared_type='NSMutableArray*' index='0' name='loadedCards' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setVerticalOffset:'>
+<arg declared_type='int' index='0' name='verticalOffset' type='i'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='verticalOffset'>
+<retval declared_type='int' type='i'/>
 </method>
 </class>
 <class name='NSObject'>

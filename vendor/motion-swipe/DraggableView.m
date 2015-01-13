@@ -80,10 +80,10 @@
 
         [self addGestureRecognizer:panGestureRecognizer];
         [self addSubview:swipeType];
-        [self addSubview:transName];
-        [self addSubview:amount];
-        [self addSubview:date];
-        [self addSubview:category];
+        // [self addSubview:transName];
+        // [self addSubview:amount];
+        // [self addSubview:date];
+        // [self addSubview:category];
 
         overlayView = [[OverlayView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-100, 0, 100, 100)];
         overlayView.alpha = 0;
@@ -140,13 +140,13 @@
 
             // [NSString stringWithFormat: @"X position is: %", xFromCenter];
 
-            if (xFromCenter > 30) {
-                swipeType.text = @"BUSINESS";
-            } else if (xFromCenter < -30) {
-                swipeType.text = @"PERSONAL";
-            } else {
-                swipeType.text = @"";
-            }
+            // if (xFromCenter > 30) {
+            //     swipeType.text = @"BUSINESS";
+            // } else if (xFromCenter < -30) {
+            //     swipeType.text = @"PERSONAL";
+            // } else {
+            //     swipeType.text = @"";
+            // }
 
             //%%% rotate by certain amount
             CGAffineTransform transform = CGAffineTransformMakeRotation(rotationAngel);
@@ -227,9 +227,9 @@
     [delegate cardSwipedRight:self];
 
     self.swiped = YES;
-    self.business = YES;
+    // self.business = YES;
 
-    NSLog(@"YES");
+    // NSLog(@"YES");
 }
 
 //%%% called when a swip exceeds the ACTION_MARGIN to the left
@@ -246,14 +246,14 @@
     [delegate cardSwipedLeft:self];
 
     self.swiped = YES;
-    self.business = NO;
-    NSLog(@"NO");
+    // self.business = NO;
+    // NSLog(@"NO");
 }
 
 -(void)rightClickAction
 {
     CGPoint finishPoint = CGPointMake(600, self.center.y);
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.8
                      animations:^{
                          self.center = finishPoint;
                          self.transform = CGAffineTransformMakeRotation(1);
@@ -263,13 +263,13 @@
 
     [delegate cardSwipedRight:self];
 
-    NSLog(@"YES");
+    // NSLog(@"YES");
 }
 
 -(void)leftClickAction
 {
     CGPoint finishPoint = CGPointMake(-600, self.center.y);
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.8
                      animations:^{
                          self.center = finishPoint;
                          self.transform = CGAffineTransformMakeRotation(-1);
@@ -279,7 +279,7 @@
 
     [delegate cardSwipedLeft:self];
 
-    NSLog(@"NO");
+    // NSLog(@"NO");
 }
 
 
