@@ -43,7 +43,12 @@ __methods are available to swipe cards left or right without a gesture__
 @draggable.swipeLeft()
 ```
 
-__NSUserDefaults are used to track the current cardId, the recently swiped cardId, and swipe direction__
-
+__NSUserDefaults are used to track the current card, previously swiped card, and previous swipe direction__
+```
+@defaults = NSUserDefaults.standardUserDefaults
+@defaults["cardCurrent"]
+@defaults["cardSwiped"]
+@defaults["cardSwipeDirection"]
+```
 
 
