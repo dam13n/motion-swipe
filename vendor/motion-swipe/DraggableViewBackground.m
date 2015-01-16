@@ -122,15 +122,10 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     return draggableView;
 }
 
--(DraggableView *)createDraggableViewWithDataName:(NSString *)transName withAmount:(NSString *)amount withDate:(NSString *)date withCategory:(NSString *)category //withTransaction:(NSString *)transactionId
+-(DraggableView *)createDraggableView //WithDataName:(NSString *)transName withAmount:(NSString *)amount withDate:(NSString *)date withCategory:(NSString *)category //withTransaction:(NSString *)transactionId
 {
     DraggableView *draggableView = [[DraggableView alloc]initWithFrame:CGRectMake((self.frame.size.width - cardWidth)/2, (verticalOffset), cardWidth, cardHeight)];
-    draggableView.transName.text = transName; //%%% placeholder for card-specific information
-    draggableView.amount.text = [NSString stringWithFormat:@"$%@", amount];
-    // NSLog([NSString stringWithFormat:@"left........ %1.6f", xFromCenter]);
-    draggableView.date.text = date;
-    draggableView.category.text = category;
-    // draggableView.transactionId = transactionId;
+
     draggableView.delegate = self;
     return draggableView;
 }

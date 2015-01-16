@@ -48,25 +48,6 @@
         [swipeType setTextAlignment:NSTextAlignmentCenter];
         swipeType.textColor = [UIColor blackColor];
 
-        transName = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, self.frame.size.width, 100)];
-        transName.text = @"no info given";
-        [transName setTextAlignment:NSTextAlignmentCenter];
-        transName.textColor = [UIColor blackColor];
-
-        amount = [[UILabel alloc]initWithFrame:CGRectMake(0, 80, self.frame.size.width, 100)];
-        amount.text = @"no info given";
-        [amount setTextAlignment:NSTextAlignmentCenter];
-        amount.textColor = [UIColor blackColor];
-
-        date = [[UILabel alloc]initWithFrame:CGRectMake(0, 120, self.frame.size.width, 100)];
-        date.text = @"no info given";
-        [date setTextAlignment:NSTextAlignmentCenter];
-        date.textColor = [UIColor blackColor];
-
-        category = [[UILabel alloc]initWithFrame:CGRectMake(0, 160, self.frame.size.width, 100)];
-        category.text = @"no info given";
-        [category setTextAlignment:NSTextAlignmentCenter];
-        category.textColor = [UIColor blackColor];
 
         // transactionId = [[UILabel alloc]initWithFrame:CGRectMake(0, 170, self.frame.size.width, 100)];
         // transactionId.text = @"no info given";
