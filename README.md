@@ -24,3 +24,5 @@ __create a new draggable view, and add it to the draggable view background__
 new_card = @draggable.createDraggableView
 @draggable.addCard(new_card)
 ```
+
+__now just append views, buttons, whatever to that draggable view, and you're good!__
