@@ -1,8 +1,10 @@
 Motion-Swipe for RubyMotion
 ====================
+![alt tag](http://imgur.com/4bYw12e.gif)
 
-Trying to add a Tinder-like swipe gem for RubyMotion.
+Trying to add a Tinder-like swipe gem for RubyMotion. Not really production ready but useable. PRs for fixes, refactors and features accepted! This is also my first gem - advice/help is welcome.
 
+This is a wrapper around Richard Kim's TinderSimpleSwipeCards written in obj-c. He does an excellent job detailing how it all works, so that you customize it easily. Some of that got erased when I was making this, so see his source: https://github.com/cwRichardKim/TinderSimpleSwipeCards
 
 __create a draggable view background__
 ``` ruby
