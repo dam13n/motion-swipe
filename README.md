@@ -4,7 +4,7 @@ Motion-Swipe for RubyMotion
 Trying to add a Tinder-like swipe gem for RubyMotion.
 
 
-### create a draggable view background
+__create a draggable view background__
 ``` ruby
 @draggable = MotionSwipe.build({
   frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height),
@@ -12,12 +12,12 @@ Trying to add a Tinder-like swipe gem for RubyMotion.
 })
 ```
 
-### adjust the draggable view's height and width
+__adjust the draggable view's height and width__
 ``` ruby
 @draggable.setCardWithHeight(@height, withWidth: width)
 ```
 
-### create a new draggable view, and add it to the draggable view background
+__create a new draggable view, and add it to the draggable view background__
 ``` ruby
 new_card = @draggable.createDraggableView
 @draggable.addCard(new_card)
