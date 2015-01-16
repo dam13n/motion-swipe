@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib", "vendor"]
   s.files         = `git ls-files`.split($\)
+  s.license     = 'MIT'
 end
