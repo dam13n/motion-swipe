@@ -54,8 +54,8 @@
 @property (nonatomic,strong)UILabel* date;
 @property (nonatomic,strong)UILabel* category;
 @property (nonatomic,strong)UILabel* swipeType;
-@property (retain,nonatomic)NSString* transactionId;
-// @property (nonatomic,strong)NSString transactionId;
+@property (retain,nonatomic)NSString* cardId;
+// @property (nonatomic,strong)NSString cardId;
 // @property (nonatomic,strong)BOOL* swiped;
 // @property (nonatomic,strong)BOOL* business;
 @property (nonatomic, assign) BOOL swiped;

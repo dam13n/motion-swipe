@@ -117,7 +117,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     return draggableView;
 }
 
--(DraggableView *)createDraggableView //WithDataName:(NSString *)transName withAmount:(NSString *)amount withDate:(NSString *)date withCategory:(NSString *)category //withTransaction:(NSString *)transactionId
+-(DraggableView *)createDraggableView //WithDataName:(NSString *)transName withAmount:(NSString *)amount withDate:(NSString *)date withCategory:(NSString *)category //withTransaction:(NSString *)cardId
 {
     DraggableView *draggableView = [[DraggableView alloc]initWithFrame:CGRectMake((self.frame.size.width - cardWidth)/2, (verticalOffset), cardWidth, cardHeight)];
 
@@ -162,7 +162,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
         }
         DraggableView *c = (DraggableView *) loadedCards[0];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject: c.transactionId forKey:@"currentCard"];
+        [defaults setObject: c.cardId forKey:@"currentCard"];
     }
     return [loadedCards count];
 }
@@ -187,11 +187,11 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
         [self insertSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] belowSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-2)]];
         DraggableView *cNew = (DraggableView *) loadedCards[MAX_BUFFER_SIZE-2];
 
-        [defaults setObject: cNew.transactionId forKey:@"currentCard"];
+        [defaults setObject: cNew.cardId forKey:@"currentCard"];
     }
 
     // NSLog([NSString stringWithFormat:@"left swipe"]);
-    [defaults setObject: c.transactionId forKey:@"cardSwiped"];
+    [defaults setObject: c.cardId forKey:@"cardSwiped"];
     [defaults setObject:@"personal" forKey:@"cardExpenseType"];
     [defaults synchronize];
 }
@@ -213,13 +213,13 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
         [self insertSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] belowSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-2)]];
         DraggableView *cNew = (DraggableView *) loadedCards[MAX_BUFFER_SIZE-2];
 
-        [defaults setObject: cNew.transactionId forKey:@"currentCard"];
+        [defaults setObject: cNew.cardId forKey:@"currentCard"];
 
     }
 
     // NSLog([NSString stringWithFormat:@"right swipe"]);
 
-    [defaults setObject:c.transactionId forKey:@"cardSwiped"];
+    [defaults setObject:c.cardId forKey:@"cardSwiped"];
     [defaults setObject:@"business" forKey:@"cardExpenseType"];
     [defaults synchronize];
 

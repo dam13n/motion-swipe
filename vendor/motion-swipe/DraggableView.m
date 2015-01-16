@@ -33,7 +33,7 @@
 @synthesize overlayView;
 @synthesize swiped;
 @synthesize business;
-@synthesize transactionId;
+@synthesize cardId;
 
 @synthesize swipeType;
 
@@ -49,8 +49,8 @@
         swipeType.textColor = [UIColor blackColor];
 
 
-        // transactionId = [[UILabel alloc]initWithFrame:CGRectMake(0, 170, self.frame.size.width, 100)];
-        // transactionId.text = @"no info given";
+        // cardId = [[UILabel alloc]initWithFrame:CGRectMake(0, 170, self.frame.size.width, 100)];
+        // cardId.text = @"no info given";
 
         self.backgroundColor = [UIColor whiteColor];
 
