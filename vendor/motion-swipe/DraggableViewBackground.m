@@ -192,7 +192,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
 
     // NSLog([NSString stringWithFormat:@"left swipe"]);
     [defaults setObject: c.cardId forKey:@"cardSwiped"];
-    [defaults setObject:@"personal" forKey:@"cardExpenseType"];
+    [defaults setObject:@"left" forKey:@"cardSwipedDirection"];
     [defaults synchronize];
 }
 
@@ -220,7 +220,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     // NSLog([NSString stringWithFormat:@"right swipe"]);
 
     [defaults setObject:c.cardId forKey:@"cardSwiped"];
-    [defaults setObject:@"business" forKey:@"cardExpenseType"];
+    [defaults setObject:@"right" forKey:@"cardSwipedDirection"];
     [defaults synchronize];
 
 }

@@ -122,9 +122,9 @@
             // [NSString stringWithFormat: @"X position is: %", xFromCenter];
 
             // if (xFromCenter > 30) {
-            //     swipeType.text = @"BUSINESS";
+            //     swipeType.text = @"RIGHT";
             // } else if (xFromCenter < -30) {
-            //     swipeType.text = @"PERSONAL";
+            //     swipeType.text = @"LEFT";
             // } else {
             //     swipeType.text = @"";
             // }
