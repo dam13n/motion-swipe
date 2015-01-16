@@ -25,4 +25,9 @@ new_card = @draggable.createDraggableView
 @draggable.addCard(new_card)
 ```
 
-__now just append views, buttons, whatever to that draggable view, and you're good!__
+__now just append views, buttons, or whatever to that draggable view, and you're good!__
+``` ruby
+# you can assign an id to the card for identification
+new_card.cardId = card_id
+```
+
