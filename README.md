@@ -48,7 +48,7 @@ __NSUserDefaults are used to track the current card, previously swiped card, and
 @defaults = NSUserDefaults.standardUserDefaults
 @defaults["cardCurrent"]
 @defaults["cardSwiped"]
-@defaults["cardSwipeDirection"]
+@defaults["cardSwipedDirection"]
 ```
 
 
