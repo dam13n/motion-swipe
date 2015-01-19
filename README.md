@@ -25,9 +25,30 @@ new_card = @draggable.createDraggableView
 @draggable.addCard(new_card)
 ```
 
-__now just append views, buttons, or whatever to that draggable view, and you're good!__
+__now just append views, buttons, or whatever to that draggable view__
 ``` ruby
 # you can assign an id to the card for identification
 new_card.cardId = card_id
 ```
+
+__make sure to load the cards you added into the draggable view background__
+``` ruby
+# this method returns the number of cards
+count = @draggable.loadCards()
+```
+
+__methods are available to swipe cards left or right without a gesture__
+``` ruby
+@draggable.swipeRight()
+@draggable.swipeLeft()
+```
+
+__NSUserDefaults are used to track the current card, previously swiped card, and previous swipe direction__
+```
+@defaults = NSUserDefaults.standardUserDefaults
+@defaults["cardCurrent"]
+@defaults["cardSwiped"]
+@defaults["cardSwipedDirection"]
+```
+
 
