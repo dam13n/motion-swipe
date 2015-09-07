@@ -10,7 +10,8 @@ gem "afmotion" # Networking
 # Debugging tools
 gem "newclear" # Completely wipe out the simulator and rebuild
 
-gem "motion-swipe" #, path: "/Users/dstldjeans/Projects/gems/motion-swipe"
+gem "motion-swipe", github: 'dam13n/motion-swipe', branch: :master
+#, path: "/Users/dstldjeans/Projects/gems/motion-swipe"
 
 # Optional
 

@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/dam13n/motion-swipe.git
+  revision: c1ed24869923ff3b94706d2f02c938c8c376e0df
+  branch: master
+  specs:
+    motion-swipe (0.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -59,7 +66,6 @@ GEM
     motion-cocoapods (1.7.4)
       cocoapods (>= 0.34)
     motion-require (0.2.0)
-    motion-swipe (0.0.4)
     motion-yaml (1.4)
     motion_print (1.2.0)
     nap (0.8.0)
@@ -96,7 +102,7 @@ DEPENDENCIES
   afmotion
   cdq
   motion-cocoapods
-  motion-swipe
+  motion-swipe!
   motion-yaml (= 1.4)
   newclear
   rake

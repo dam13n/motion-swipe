@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.homepage		= "http://github.com/dam13n/motion-swipe"
 
   s.require_paths = ["lib", "vendor"]
-  s.files         = `git ls-files`.split($\)
+  # s.files         = `git ls-files`.split($\)
+  s.files         = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["README.md"]
   s.license     = 'MIT'
 end
