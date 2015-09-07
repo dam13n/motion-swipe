@@ -49,17 +49,12 @@
 @property (nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
 @property (nonatomic)CGPoint originalPoint;
 @property (nonatomic,strong)OverlayView* overlayView;
-@property (nonatomic,strong)UILabel* transName; //%%% a placeholder for any card-specific information
-@property (nonatomic,strong)UILabel* amount;
-@property (nonatomic,strong)UILabel* date;
-@property (nonatomic,strong)UILabel* category;
+
 @property (nonatomic,strong)UILabel* swipeType;
 @property (retain,nonatomic)NSString* cardId;
-// @property (nonatomic,strong)NSString cardId;
-// @property (nonatomic,strong)BOOL* swiped;
-// @property (nonatomic,strong)BOOL* business;
+@property (retain,nonatomic)NSString* cardType;
 @property (nonatomic, assign) BOOL swiped;
-@property (nonatomic, assign) BOOL business;
+
 
 -(void)leftClickAction;
 -(void)rightClickAction;

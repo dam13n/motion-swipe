@@ -19,7 +19,7 @@
 }
 //this makes it so only two cards are loaded at a time to
 //avoid performance and memory costs
-static const int MAX_BUFFER_SIZE = 2; //%%% max number of cards loaded at any given time, must be greater than 1
+static const int MAX_BUFFER_SIZE = 3; //%%% max number of cards loaded at any given time, must be greater than 1
 static const float CARD_HEIGHT = 310; //%%% height of the draggable card
 static const float CARD_WIDTH = 300; //%%% width of the draggable card
 
@@ -38,8 +38,8 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     self = [super initWithFrame:frame];
     if (self) {
         [super layoutSubviews];
-        [self setupView];
-        exampleCardLabels = [[NSMutableArray alloc] init]; //%%% placeholder for card-specific information
+        // [self setupView];
+        // exampleCardLabels = [[NSMutableArray alloc] init]; //%%% placeholder for card-specific information
         loadedCards = [[NSMutableArray alloc] init];
         allCards = [[NSMutableArray alloc] init];
         cardsLoadedIndex = 0;
@@ -47,7 +47,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
         // default card dimensions in case they aren't sent
         cardHeight = 310;
         cardWidth = 300;
-        verticalOffset = 20;
+        verticalOffset = 30;
         // [self loadCards];
     }
     return self;
@@ -86,7 +86,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
 -(void)setupView
 {
 // #warning customize all of this.  These are just place holders to make it look pretty
-    self.backgroundColor = [UIColor colorWithRed:.92 green:.93 blue:.95 alpha:0.0]; //the gray background colors
+    // self.backgroundColor = [UIColor colorWithRed:.92 green:.93 blu`e:.95 alpha:0.0]; //the gray background colors
     // self.backgroundColor = [UIColor colorWithWhite:myWhiteFloat alpha:myAlphaFloat];
 
     // menuButton = [[UIButton alloc]initWithFrame:CGRectMake(17, 34, 22, 15)];
@@ -112,7 +112,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
 -(DraggableView *)createDraggableViewWithDataAtIndex:(NSInteger)index
 {
     DraggableView *draggableView = [[DraggableView alloc]initWithFrame:CGRectMake((self.frame.size.width - cardWidth)/2, (self.frame.size.height - cardHeight)/2, cardWidth, cardHeight)];
-    draggableView.transName.text = [allCards objectAtIndex:index]; //%%% placeholder for card-specific information
+    // draggableView.transName.text = [allCards objectAtIndex:index]; //%%% placeholder for card-specific information
     draggableView.delegate = self;
     return draggableView;
 }
@@ -137,7 +137,9 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     if([allCards count] > 0) {
         NSInteger numLoadedCardsCap =((([allCards count] > MAX_BUFFER_SIZE) || ([allCards count] == 0))?MAX_BUFFER_SIZE:[allCards count]);
         //%%% if the buffer size is greater than the data size, there will be an array error, so this makes sure that doesn't happen
-
+        // NSLog(@"numLoadedCardsCap");
+        // NSLog(@"numLoadedCardsCap = %@", numLoadedCardsCap);
+        // NSLog(@"numLoadedCardsCap = %i", numLoadedCardsCap);
         //%%% loops through the exampleCardsLabels array to create a card for each label.  This should be customized by removing "allCards" with your own array of data
         for (int i = 0; i<[allCards count]; i++) {
             // DraggableView* newCard = [self createDraggableViewWithDataAtIndex:i];
@@ -187,8 +189,18 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
         [self insertSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] belowSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-2)]];
         DraggableView *cNew = (DraggableView *) loadedCards[MAX_BUFFER_SIZE-2];
 
-        [defaults setObject: cNew.cardId forKey:@"cardCurrent"];
+        // [defaults setObject: cNew.cardId forKey:@"cardCurrent"];
+        // [defaults synchronize];
     }
+    if ([loadedCards count] > 0) {
+        DraggableView *temp = (DraggableView *) loadedCards[0];
+
+    // int card_id = temp.cardId;
+        [defaults setObject: temp.cardId forKey:@"cardCurrent"];
+    }
+
+
+    [defaults synchronize];
 
     // NSLog([NSString stringWithFormat:@"left swipe"]);
     [defaults setObject:@"left" forKey:@"cardSwipedDirection"];
@@ -206,6 +218,16 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [loadedCards removeObjectAtIndex:0]; //%%% card was swiped, so it's no longer a "loaded card"
+    // NSLog(@"cardsLoadedIndex is = %i", cardsLoadedIndex);
+    // NSLog(@"all cards count is = %i", [allCards count]);
+
+    // DraggableView *temp = (DraggableView *)loadedCards[1];
+    // int card_id = temp.cardId;
+
+    // NSLog(@"loaded card id = %i", card_id);
+
+    // [defaults setObject: loadedCards[0].cardId forKey:@"cardCurrent"];
+
 
     if (cardsLoadedIndex < [allCards count]) { //%%% if we haven't reached the end of all cards, put another into the loaded cards
         [loadedCards addObject:[allCards objectAtIndex:cardsLoadedIndex]];
@@ -213,9 +235,19 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
         [self insertSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-1)] belowSubview:[loadedCards objectAtIndex:(MAX_BUFFER_SIZE-2)]];
         DraggableView *cNew = (DraggableView *) loadedCards[MAX_BUFFER_SIZE-2];
 
-        [defaults setObject: cNew.cardId forKey:@"cardCurrent"];
+        // [defaults setObject: cNew.cardId forKey:@"cardCurrent"];
+
 
     }
+    if ([loadedCards count] > 0) {
+        DraggableView *temp = (DraggableView *) loadedCards[0];
+
+    // int card_id = temp.cardId;
+        [defaults setObject: temp.cardId forKey:@"cardCurrent"];
+    }
+
+
+    [defaults synchronize];
 
     // NSLog([NSString stringWithFormat:@"right swipe"]);
     [defaults setObject:@"right" forKey:@"cardSwipedDirection"];

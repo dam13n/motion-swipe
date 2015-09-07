@@ -26,14 +26,10 @@
 @synthesize delegate;
 
 @synthesize panGestureRecognizer;
-@synthesize transName;
-@synthesize amount;
-@synthesize date;
-@synthesize category;
 @synthesize overlayView;
 @synthesize swiped;
-@synthesize business;
 @synthesize cardId;
+@synthesize cardType;
 
 @synthesize swipeType;
 
@@ -52,10 +48,7 @@
         // cardId = [[UILabel alloc]initWithFrame:CGRectMake(0, 170, self.frame.size.width, 100)];
         // cardId.text = @"no info given";
 
-        self.backgroundColor = [UIColor whiteColor];
-
-
-
+        // self.backgroundColor = [UIColor whiteColor];
 
         panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(beingDragged:)];
 
@@ -198,7 +191,7 @@
 -(void)rightAction
 {
     CGPoint finishPoint = CGPointMake(500, 2*yFromCenter +self.originalPoint.y);
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.1
                      animations:^{
                          self.center = finishPoint;
                      }completion:^(BOOL complete){
@@ -217,7 +210,7 @@
 -(void)leftAction
 {
     CGPoint finishPoint = CGPointMake(-500, 2*yFromCenter +self.originalPoint.y);
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.1
                      animations:^{
                          self.center = finishPoint;
                      }completion:^(BOOL complete){
@@ -234,7 +227,7 @@
 -(void)rightClickAction
 {
     CGPoint finishPoint = CGPointMake(600, self.center.y);
-    [UIView animateWithDuration:0.8
+    [UIView animateWithDuration:0.3
                      animations:^{
                          self.center = finishPoint;
                          self.transform = CGAffineTransformMakeRotation(1);
@@ -250,7 +243,7 @@
 -(void)leftClickAction
 {
     CGPoint finishPoint = CGPointMake(-600, self.center.y);
-    [UIView animateWithDuration:0.8
+    [UIView animateWithDuration:0.3
                      animations:^{
                          self.center = finishPoint;
                          self.transform = CGAffineTransformMakeRotation(-1);
