@@ -53,7 +53,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     return self;
 }
 
--(void) setCardWithHeight:(NSInteger)height withWidth:(NSInteger)width // withOffset:(NSInteger)offset
+-(void)setCardWithHeight:(NSInteger)height withWidth:(NSInteger)width // withOffset:(NSInteger)offset
 {
 
     cardHeight = height;

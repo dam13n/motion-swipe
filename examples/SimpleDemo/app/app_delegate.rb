@@ -1,17 +1,13 @@
-class AppDelegate < PM::Delegate
-  include CDQ # Remove this if you aren't using CDQ
+class AppDelegate
+  def application(application, didFinishLaunchingWithOptions:launchOptions)
+    rootViewController = SwipeViewController.alloc.init
+    rootViewController.title = 'SimpleDemo'
+    rootViewController.view.backgroundColor = UIColor.whiteColor
 
-  status_bar true, animation: :fade
+    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    @window.rootViewController = rootViewController
+    @window.makeKeyAndVisible
 
-  def on_load(app, options)
-    cdq.setup # Remove this if you aren't using CDQ
-    open HomeScreen.new(nav_bar: true)
-  end
-
-  # Remove this if you are only supporting portrait
-  def application(application, willChangeStatusBarOrientation: new_orientation, duration: duration)
-    # Manually set RMQ's orientation before the device is actually oriented
-    # So that we can do stuff like style views before the rotation begins
-    device.orientation = new_orientation
+    true
   end
 end

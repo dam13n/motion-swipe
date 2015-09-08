@@ -49,4 +49,8 @@
 @property (nonatomic, assign) int verticalOffset;
 
 
+-(void)setCardWithHeight:(NSInteger)height withWidth:(NSInteger)width;
+-(int)loadedCardsCount;
+
+
 @end

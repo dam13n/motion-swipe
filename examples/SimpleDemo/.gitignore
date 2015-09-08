@@ -5,8 +5,6 @@ app/pixate_code.rb
 resources/*.nib
 resources/*.momd
 resources/*.storyboardc
-resources/*.xcdatamodeld
-vendor
 .DS_Store
 nbproject
 .redcar
@@ -17,6 +15,3 @@ nbproject
 .sass-cache
 .idea
 .dat*.*
-*.swp
-*.orig
-.DS_Store
