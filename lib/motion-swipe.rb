@@ -6,8 +6,7 @@ Motion::Project::App.setup do |app|
   Dir.glob(File.join(File.dirname(__FILE__), 'motion-swipe/*.rb')).each do |file|
     app.files.unshift(file)
   end
-  # app.frameworks += %w( Foundation SystemConfiguration )
-  app.vendor_project(File.expand_path(File.join(File.dirname(__FILE__), '../vendor/motion-swipe')), :static, cflags: "-fobjc-arc")
 
+  app.vendor_project(File.expand_path(File.join(File.dirname(__FILE__), '../vendor/motion-swipe')), :static, cflags: "-fobjc-arc")
 
 end

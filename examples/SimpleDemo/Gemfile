@@ -3,4 +3,4 @@ source 'https://rubygems.org'
 gem 'rake'
 # Add your dependencies here:
 
-gem 'motion-swipe', path: "/Users/dstldjeans/Projects/gems/motion-swipe"
+gem 'motion-swipe'
