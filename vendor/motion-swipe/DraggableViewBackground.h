@@ -51,8 +51,8 @@
 
 -(void)setCardWithHeight:(NSInteger)height withWidth:(NSInteger)width;
 -(int)loadedCardsCount;
--(void)removeLoadedCards
--(void)removeAllCards
+-(void)removeLoadedCards;
+-(void)removeAllCards;
 
 
 @end
