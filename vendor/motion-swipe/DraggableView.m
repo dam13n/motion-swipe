@@ -28,6 +28,7 @@
 @synthesize panGestureRecognizer;
 @synthesize overlayView;
 @synthesize swiped;
+@synthesize swipeDirection;
 @synthesize cardId;
 @synthesize cardType;
 
@@ -198,9 +199,15 @@
                          [self removeFromSuperview];
                      }];
 
+    self.swipeDirection = @"right";
+    self.swiped = YES;
+
     [delegate cardSwipedRight:self];
 
-    self.swiped = YES;
+    
+
+    // NSLog(@"loaded card id = %i", self.swipeDirection);
+    
     // self.business = YES;
 
     // NSLog(@"YES");
@@ -217,9 +224,15 @@
                          [self removeFromSuperview];
                      }];
 
+    self.swipeDirection = @"left";
+    self.swiped = YES;
+    
+
+
     [delegate cardSwipedLeft:self];
 
-    self.swiped = YES;
+    
+    // NSLog(@"loaded card id = %i", self.swipeDirection);
     // self.business = NO;
     // NSLog(@"NO");
 }
@@ -227,13 +240,16 @@
 -(void)rightClickAction
 {
     CGPoint finishPoint = CGPointMake(600, self.center.y);
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.5
                      animations:^{
                          self.center = finishPoint;
                          self.transform = CGAffineTransformMakeRotation(1);
                      }completion:^(BOOL complete){
                          [self removeFromSuperview];
                      }];
+
+    self.swipeDirection = @"right";
+    self.swiped = YES;
 
     [delegate cardSwipedRight:self];
 
@@ -243,13 +259,16 @@
 -(void)leftClickAction
 {
     CGPoint finishPoint = CGPointMake(-600, self.center.y);
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.5
                      animations:^{
                          self.center = finishPoint;
                          self.transform = CGAffineTransformMakeRotation(-1);
                      }completion:^(BOOL complete){
                          [self removeFromSuperview];
                      }];
+
+    self.swipeDirection = @"left";
+    self.swiped = YES;
 
     [delegate cardSwipedLeft:self];
 

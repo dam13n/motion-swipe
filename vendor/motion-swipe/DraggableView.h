@@ -54,6 +54,7 @@
 @property (retain,nonatomic)NSString* cardId;
 @property (retain,nonatomic)NSString* cardType;
 @property (nonatomic, assign) BOOL swiped;
+@property (assign, nonatomic)NSString* swipeDirection;
 
 
 -(void)leftClickAction;
