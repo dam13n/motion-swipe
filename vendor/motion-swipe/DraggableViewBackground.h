@@ -47,6 +47,7 @@
 @property (nonatomic, assign) int cardHeight;
 @property (nonatomic, assign) int cardWidth;
 @property (nonatomic, assign) int verticalOffset;
+@property (retain,nonatomic) NSString* swipe_direction;
 
 
 -(void)setCardWithHeight:(NSInteger)height withWidth:(NSInteger)width;

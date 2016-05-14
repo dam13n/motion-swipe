@@ -40,10 +40,10 @@
     if (self) {
         [self setupView];
 
-        swipeType = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 100)];
-        swipeType.text = @"";
-        [swipeType setTextAlignment:NSTextAlignmentCenter];
-        swipeType.textColor = [UIColor blackColor];
+        // swipeType = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 100)];
+        // swipeType.text = @"";
+        // [swipeType setTextAlignment:NSTextAlignmentCenter];
+        // swipeType.textColor = [UIColor blackColor];
 
 
         // cardId = [[UILabel alloc]initWithFrame:CGRectMake(0, 170, self.frame.size.width, 100)];
@@ -60,9 +60,9 @@
         // [self addSubview:date];
         // [self addSubview:category];
 
-        overlayView = [[OverlayView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-100, 0, 100, 100)];
-        overlayView.alpha = 0;
-        [self addSubview:overlayView];
+        // overlayView = [[OverlayView alloc]initWithFrame:CGRectMake(self.frame.size.width/2-100, 0, 100, 100)];
+        // overlayView.alpha = 0;
+        // [self addSubview:overlayView];
     }
     return self;
 }
@@ -131,7 +131,7 @@
 
             //%%% apply transformations
             self.transform = scaleTransform;
-            [self updateOverlay:xFromCenter];
+            // [self updateOverlay:xFromCenter];
 
             break;
         };
@@ -182,7 +182,7 @@
                          animations:^{
                              self.center = self.originalPoint;
                              self.transform = CGAffineTransformMakeRotation(0);
-                             overlayView.alpha = 0;
+                             // overlayView.alpha = 0;
                          }];
     }
 

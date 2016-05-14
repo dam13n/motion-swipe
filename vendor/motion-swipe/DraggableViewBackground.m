@@ -203,7 +203,8 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     [defaults synchronize];
 
     // NSLog([NSString stringWithFormat:@"left swipe"]);
-    [defaults setObject:@"left" forKey:@"cardSwipedDirection"];
+    // [defaults setObject:@"left" forKey:@"cardSwipedDirection"];
+    self.swipe_direction = @"left";
     [defaults setObject: c.cardId forKey:@"cardSwiped"];
     [defaults synchronize];
 }
@@ -250,7 +251,8 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
     [defaults synchronize];
 
     // NSLog([NSString stringWithFormat:@"right swipe"]);
-    [defaults setObject:@"right" forKey:@"cardSwipedDirection"];
+    // [defaults setObject:@"right" forKey:@"cardSwipedDirection"];
+    self.swipe_direction = @"right";
     [defaults setObject:c.cardId forKey:@"cardSwiped"];
     [defaults synchronize];
 
@@ -260,7 +262,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
 -(void)swipeRight
 {
     DraggableView *dragView = [loadedCards firstObject];
-    dragView.overlayView.mode = GGOverlayViewModeRight;
+    // dragView.overlayView.mode = GGOverlayViewModeRight;
     [UIView animateWithDuration:0.8 animations:^{
         dragView.overlayView.alpha = 1;
     }];
@@ -272,7 +274,7 @@ static const float CARD_WIDTH = 300; //%%% width of the draggable card
 -(void)swipeLeft
 {
     DraggableView *dragView = [loadedCards firstObject];
-    dragView.overlayView.mode = GGOverlayViewModeLeft;
+    // dragView.overlayView.mode = GGOverlayViewModeLeft;
     [UIView animateWithDuration:0.8 animations:^{
         dragView.overlayView.alpha = 1;
     }];
